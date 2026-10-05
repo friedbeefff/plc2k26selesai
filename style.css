@@ -1100,8 +1100,6 @@ footer p {
     .hero-logo { max-width: 250px; }
 }
 
-
-
 /* ============================================
    MUSIC PLAYER
 ============================================ */
@@ -1113,14 +1111,13 @@ footer p {
     display: flex;
     align-items: center;
     gap: 10px;
-    background: rgba(0, 0, 0, 0.7);
+    background: rgba(0, 0, 0, 0.75);
     border: 2px solid rgba(251, 208, 0, 0.3);
     border-radius: 50px;
     padding: 8px 16px 8px 8px;
     backdrop-filter: blur(10px);
     box-shadow: 0 8px 30px rgba(0, 0, 0, 0.5);
     transition: all 0.3s;
-    cursor: pointer;
 }
 
 .music-player:hover {
@@ -1171,24 +1168,13 @@ footer p {
     user-select: none;
 }
 
-/* ===== RESPONSIVE ===== */
 @media (max-width: 480px) {
     .music-player {
         bottom: 16px;
         left: 16px;
         padding: 6px 12px 6px 6px;
     }
-    
-    .music-btn {
-        width: 36px;
-        height: 36px;
-    }
-    
-    .music-btn i {
-        font-size: 0.85rem;
-    }
-    
-    .music-label {
-        font-size: 0.4rem;
-    }
+    .music-btn { width: 36px; height: 36px; }
+    .music-btn i { font-size: 0.85rem; }
+    .music-label { font-size: 0.4rem; }
 }
