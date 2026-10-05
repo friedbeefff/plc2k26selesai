@@ -142,10 +142,8 @@ document.addEventListener('DOMContentLoaded', () => {
     setTimeout(() => {
         updateProgress();
     }, 300);
-});
-
-// ============================================
-// MUSIC PLAYER
+});// ============================================
+// MUSIC PLAYER - AUTO PLAY SETELAH INTERAKSI
 // ============================================
 const musicBtn = document.getElementById('musicBtn');
 const bgMusic = document.getElementById('bgMusic');
@@ -153,30 +151,35 @@ const musicIcon = document.getElementById('musicIcon');
 const musicLabel = document.getElementById('musicLabel');
 
 let isPlaying = false;
+let hasAutoPlayed = false;
 
-// ===== AUTO PLAY SETELAH USER INTERACT =====
-// Browser modern gak izinin auto-play tanpa interaksi user.
-// Jadi lagu baru bisa diputar setelah user klik/scroll/tap di mana aja.
-
+// ===== FUNGSI AUTO PLAY =====
 function tryAutoPlay() {
+    if (hasAutoPlayed) return;
+    
+    bgMusic.volume = 0.3; // Volume 30% biar gak kaget
+    
     bgMusic.play().then(() => {
         isPlaying = true;
+        hasAutoPlayed = true;
         updateMusicUI();
-        console.log('🎵 Musik otomatis diputar setelah interaksi user');
+        console.log('🎵 Musik otomatis muter!');
     }).catch(err => {
-        console.log('Auto-play diblokir browser, user harus klik manual');
+        console.log('Auto-play gagal, user harus klik manual:', err);
     });
 }
 
-// Deteksi interaksi pertama
-document.addEventListener('click', function firstClick() {
-    tryAutoPlay();
-    document.removeEventListener('click', firstClick);
-}, { once: true });
+// ===== TRIGGER AUTO PLAY SAAT INTERAKSI PERTAMA =====
+// Deteksi semua jenis interaksi: klik, tap, scroll, touch, keypress
+const events = ['click', 'touchstart', 'keydown', 'scroll', 'mousemove'];
 
-// ===== KLIK TOMBOL MUSIC =====
+events.forEach(event => {
+    document.addEventListener(event, tryAutoPlay, { once: true, passive: true });
+});
+
+// ===== TOMBOL MUSIC (manual play/pause) =====
 musicBtn.addEventListener('click', (e) => {
-    e.stopPropagation(); // Biar gak ke-trigger dobel
+    e.stopPropagation();
     
     if (isPlaying) {
         bgMusic.pause();
@@ -206,7 +209,7 @@ function updateMusicUI() {
     }
 }
 
-// ===== SYNC DENGAN EVENT AUDIO =====
+// ===== SYNC UI DENGAN EVENT AUDIO =====
 bgMusic.addEventListener('play', () => {
     isPlaying = true;
     updateMusicUI();
