@@ -143,3 +143,76 @@ document.addEventListener('DOMContentLoaded', () => {
         updateProgress();
     }, 300);
 });
+
+// ============================================
+// MUSIC PLAYER
+// ============================================
+const musicBtn = document.getElementById('musicBtn');
+const bgMusic = document.getElementById('bgMusic');
+const musicIcon = document.getElementById('musicIcon');
+const musicLabel = document.getElementById('musicLabel');
+
+let isPlaying = false;
+
+// ===== AUTO PLAY SETELAH USER INTERACT =====
+// Browser modern gak izinin auto-play tanpa interaksi user.
+// Jadi lagu baru bisa diputar setelah user klik/scroll/tap di mana aja.
+
+function tryAutoPlay() {
+    bgMusic.play().then(() => {
+        isPlaying = true;
+        updateMusicUI();
+        console.log('🎵 Musik otomatis diputar setelah interaksi user');
+    }).catch(err => {
+        console.log('Auto-play diblokir browser, user harus klik manual');
+    });
+}
+
+// Deteksi interaksi pertama
+document.addEventListener('click', function firstClick() {
+    tryAutoPlay();
+    document.removeEventListener('click', firstClick);
+}, { once: true });
+
+// ===== KLIK TOMBOL MUSIC =====
+musicBtn.addEventListener('click', (e) => {
+    e.stopPropagation(); // Biar gak ke-trigger dobel
+    
+    if (isPlaying) {
+        bgMusic.pause();
+        isPlaying = false;
+    } else {
+        bgMusic.play().then(() => {
+            isPlaying = true;
+        }).catch(err => {
+            console.error('Gagal play:', err);
+        });
+    }
+    updateMusicUI();
+});
+
+// ===== UPDATE UI =====
+function updateMusicUI() {
+    if (isPlaying) {
+        musicIcon.classList.remove('fa-music');
+        musicIcon.classList.add('fa-pause');
+        musicBtn.classList.add('playing');
+        musicLabel.textContent = 'Pause';
+    } else {
+        musicIcon.classList.remove('fa-pause');
+        musicIcon.classList.add('fa-music');
+        musicBtn.classList.remove('playing');
+        musicLabel.textContent = 'Play Music';
+    }
+}
+
+// ===== SYNC DENGAN EVENT AUDIO =====
+bgMusic.addEventListener('play', () => {
+    isPlaying = true;
+    updateMusicUI();
+});
+
+bgMusic.addEventListener('pause', () => {
+    isPlaying = false;
+    updateMusicUI();
+});
