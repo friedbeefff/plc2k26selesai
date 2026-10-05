@@ -142,80 +142,88 @@ document.addEventListener('DOMContentLoaded', () => {
     setTimeout(() => {
         updateProgress();
     }, 300);
-});// ============================================
+});
+
+// ============================================
 // MUSIC PLAYER - AUTO PLAY SETELAH INTERAKSI
 // ============================================
-const musicBtn = document.getElementById('musicBtn');
-const bgMusic = document.getElementById('bgMusic');
-const musicIcon = document.getElementById('musicIcon');
-const musicLabel = document.getElementById('musicLabel');
+document.addEventListener('DOMContentLoaded', () => {
+    const musicBtn = document.getElementById('musicBtn');
+    const bgMusic = document.getElementById('bgMusic');
+    const musicIcon = document.getElementById('musicIcon');
+    const musicLabel = document.getElementById('musicLabel');
 
-let isPlaying = false;
-let hasAutoPlayed = false;
+    // Kalau elemen gak ketemu, skip
+    if (!musicBtn || !bgMusic || !musicIcon || !musicLabel) {
+        console.warn('⚠️ Music player elemen gak ketemu, skip');
+        return;
+    }
 
-// ===== FUNGSI AUTO PLAY =====
-function tryAutoPlay() {
-    if (hasAutoPlayed) return;
-    
-    bgMusic.volume = 0.3; // Volume 30% biar gak kaget
-    
-    bgMusic.play().then(() => {
-        isPlaying = true;
-        hasAutoPlayed = true;
-        updateMusicUI();
-        console.log('🎵 Musik otomatis muter!');
-    }).catch(err => {
-        console.log('Auto-play gagal, user harus klik manual:', err);
-    });
-}
+    let isPlaying = false;
+    let hasAutoPlayed = false;
 
-// ===== TRIGGER AUTO PLAY SAAT INTERAKSI PERTAMA =====
-// Deteksi semua jenis interaksi: klik, tap, scroll, touch, keypress
-const events = ['click', 'touchstart', 'keydown', 'scroll', 'mousemove'];
-
-events.forEach(event => {
-    document.addEventListener(event, tryAutoPlay, { once: true, passive: true });
-});
-
-// ===== TOMBOL MUSIC (manual play/pause) =====
-musicBtn.addEventListener('click', (e) => {
-    e.stopPropagation();
-    
-    if (isPlaying) {
-        bgMusic.pause();
-        isPlaying = false;
-    } else {
+    // ===== FUNGSI AUTO PLAY =====
+    function tryAutoPlay() {
+        if (hasAutoPlayed) return;
+        
+        bgMusic.volume = 0.3;
+        
         bgMusic.play().then(() => {
             isPlaying = true;
+            hasAutoPlayed = true;
+            updateMusicUI();
+            console.log('🎵 Musik otomatis muter!');
         }).catch(err => {
-            console.error('Gagal play:', err);
+            console.log('Auto-play gagal, user harus klik manual:', err);
         });
     }
-    updateMusicUI();
-});
 
-// ===== UPDATE UI =====
-function updateMusicUI() {
-    if (isPlaying) {
-        musicIcon.classList.remove('fa-music');
-        musicIcon.classList.add('fa-pause');
-        musicBtn.classList.add('playing');
-        musicLabel.textContent = 'Pause';
-    } else {
-        musicIcon.classList.remove('fa-pause');
-        musicIcon.classList.add('fa-music');
-        musicBtn.classList.remove('playing');
-        musicLabel.textContent = 'Play Music';
+    // ===== TRIGGER AUTO PLAY SAAT INTERAKSI PERTAMA =====
+    const events = ['click', 'touchstart', 'keydown', 'scroll', 'mousemove'];
+    events.forEach(event => {
+        document.addEventListener(event, tryAutoPlay, { once: true, passive: true });
+    });
+
+    // ===== TOMBOL MUSIC =====
+    musicBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        
+        if (isPlaying) {
+            bgMusic.pause();
+            isPlaying = false;
+        } else {
+            bgMusic.play().then(() => {
+                isPlaying = true;
+            }).catch(err => {
+                console.error('Gagal play:', err);
+            });
+        }
+        updateMusicUI();
+    });
+
+    // ===== UPDATE UI =====
+    function updateMusicUI() {
+        if (isPlaying) {
+            musicIcon.classList.remove('fa-music');
+            musicIcon.classList.add('fa-pause');
+            musicBtn.classList.add('playing');
+            musicLabel.textContent = 'Pause';
+        } else {
+            musicIcon.classList.remove('fa-pause');
+            musicIcon.classList.add('fa-music');
+            musicBtn.classList.remove('playing');
+            musicLabel.textContent = 'Play Music';
+        }
     }
-}
 
-// ===== SYNC UI DENGAN EVENT AUDIO =====
-bgMusic.addEventListener('play', () => {
-    isPlaying = true;
-    updateMusicUI();
-});
+    // ===== SYNC DENGAN EVENT AUDIO =====
+    bgMusic.addEventListener('play', () => {
+        isPlaying = true;
+        updateMusicUI();
+    });
 
-bgMusic.addEventListener('pause', () => {
-    isPlaying = false;
-    updateMusicUI();
+    bgMusic.addEventListener('pause', () => {
+        isPlaying = false;
+        updateMusicUI();
+    });
 });
