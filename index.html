@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <title>AMICCO - Til We Meet Again</title>
+    
+    <!-- ===== FAVICON ===== -->
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/images/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="assets/images/favicon/favicon-16x16.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="assets/images/favicon/apple-touch-icon.png">
+    
+    <!-- ===== GOOGLE FONTS ===== -->
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet" />
+    
+    <!-- ===== FONT AWESOME ===== -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+    
+    <!-- ===== CSS UTAMA ===== -->
+    <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+    
+    <!-- ===== LOADING SCREEN ===== -->
+    <div id="loadingScreen">
+        <div class="loading-container">
+            <div class="loading-logo">
+                <div class="loading-logo-wrapper">
+                    <span class="loading-emoji">🍄</span>
+                    <span class="loading-emoji">⭐</span>
+                    <span class="loading-emoji">🔨</span>
+                </div>
+                <h1 class="loading-title">AMICCO</h1>
+                <p class="loading-subtitle">Til We Meet Again</p>
+            </div>
+            
+            <div class="loading-progress-container">
+                <div class="loading-progress-bar">
+                    <div class="loading-progress-fill" id="progressFill"></div>
+                </div>
+                <div class="loading-percentage" id="loadingPercentage">0%</div>
+            </div>
+            
+            <div class="loading-tips" id="loadingTips">
+                <span class="tip-icon">💡</span>
+                <span class="tip-text">Terima kasih sudah meramaikan PLC 2K26!</span>
+            </div>
+            
+            <div class="loading-pixels">
+                <span class="pixel-block"></span>
+                <span class="pixel-block"></span>
+                <span class="pixel-block"></span>
+                <span class="pixel-block"></span>
+                <span class="pixel-block"></span>
+                <span class="pixel-block"></span>
+            </div>
+        </div>
+    </div>
+
+    <!-- ===== BACKGROUND ===== -->
+    <div class="bg-wrapper" id="bgWrapper">
+        <div class="bg-mario" id="bgMario"></div>
+        <div class="bg-wreck" id="bgWreck"></div>
+        <div class="bg-wreck-blue" id="bgWreckBlue"></div>
+        
+        <div class="stars"></div>
+        <div class="cloud cloud1">☁️</div>
+        <div class="cloud cloud2">☁️</div>
+        <div class="cloud cloud3">☁️</div>
+        <div class="cloud cloud4">☁️</div>
+        <div class="mushroom m1">🍄</div>
+        <div class="mushroom m2">🍄</div>
+        <div class="mushroom m4">🍄</div>
+        <div class="shooting-star">⭐</div>
+        <div class="shooting-star2">⭐</div>
+        <div class="shooting-star3">⭐</div>
+        <div class="question-block">❓</div>
+        <div class="coin coin1">🪙</div>
+        <div class="coin coin3">🪙</div>
+        <div class="coin coin4">🪙</div>
+        <div class="brick brick1">🧱</div>
+        <div class="brick brick4">🧱</div>
+        <div class="brick brick6">🧱</div>
+        <div class="tree tree1">🌳</div>
+        <div class="tree tree2">🌳</div>
+        <div class="tree tree3">🌳</div>
+        <div class="hammer2">🔨</div>
+        <div class="super-star star1">⭐</div>
+        <div class="super-star star2">⭐</div>
+    </div>
+
+    <!-- ===== NAVBAR ===== -->
+    <div class="navbar-wrapper">
+        <div class="navbar-top-brick"></div>
+        <nav class="navbar glass">
+            <div class="container">
+                <div class="logo">
+                    <div class="logo-wrapper">
+                        <img src="assets/images/logo.png" alt="Logo PLC 2K26" id="logoImg" />
+                    </div>
+                    <span class="logo-text">PLC 2K26</span>
+                </div>
+                
+                <button class="hamburger" id="hamburger">
+                    <i class="fas fa-bars"></i>
+                </button>
+                
+                <ul class="nav-links" id="navLinks">
+                    <li><a href="#home" class="nav-link"><span class="nav-emoji">🏠</span> Home</a></li>
+                    <li><a href="#gallery" class="nav-link"><span class="nav-emoji">📸</span> Gallery</a></li>
+                    <li><a href="#contact" class="nav-link"><span class="nav-emoji">📞</span> Contact</a></li>
+                </ul>
+            </div>
+        </nav>
+    </div>
+
+    <!-- ===== HERO / FAREWELL ===== -->
+    <section class="hero" id="home">
+        <div class="container hero-content">
+            <div class="hero-text">
+                <div class="pixel-badge">✨ PLC 2K26 SELESAI ✨</div>
+                
+                <div class="logo-hero">
+                    <img src="assets/images/logo-amicco.png" alt="AMICCO" class="hero-logo" />
+                </div>
+                
+                <h1 class="farewell-title">Til We Meet Again</h1>
+                <p class="farewell-text">
+                    Terima kasih untuk semua peserta, panitia, sponsor, dan semua yang sudah membuat
+                    <span class="highlight">PLC 2K26 - AMICCO</span> jadi momen yang tak terlupakan. 
+                    Sampai jumpa di petualangan berikutnya! 💫
+                </p>
+                
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== GALLERY ===== -->
+    <section id="gallery" class="section">
+        <div class="container">
+            <div class="pixel-card glass card-hover">
+                <h2><span class="pixel-icon float-icon">📸</span> Momen Seru PLC 2K26</h2>
+                <p class="gallery-subtitle">Kenangan yang gak akan terlupakan ✨</p>
+                
+                <div class="gallery-grid">
+                    <div class="gallery-item">
+                        <img src="assets/images/gallery/foto1.jpg" alt="Momen 1" loading="lazy" />
+                    </div>
+                    <div class="gallery-item">
+                        <img src="assets/images/gallery/foto2.jpg" alt="Momen 2" loading="lazy" />
+                    </div>
+                    <div class="gallery-item">
+                        <img src="assets/images/gallery/foto3.jpg" alt="Momen 3" loading="lazy" />
+                    </div>
+                    <div class="gallery-item">
+                        <img src="assets/images/gallery/foto4.jpg" alt="Momen 4" loading="lazy" />
+                    </div>
+                    <div class="gallery-item">
+                        <img src="assets/images/gallery/foto5.jpg" alt="Momen 5" loading="lazy" />
+                    </div>
+                    <div class="gallery-item">
+                        <img src="assets/images/gallery/foto6.jpg" alt="Momen 6" loading="lazy" />
+                    </div>
+                </div>
+                
+                <div class="gallery-note">
+                    📷 Follow IG <a href="https://instagram.com/official_posh" target="_blank" rel="noopener noreferrer">@official_posh</a> untuk foto & video lainnya!
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== CONTACT ===== -->
+    <section id="contact" class="section">
+        <div class="container">
+            <div class="pixel-card glass card-hover">
+                <h2><span class="pixel-icon float-icon">📞</span> Stay Connected</h2>
+                <p style="font-size: 0.6rem; color: #aaa; margin-bottom: 20px; text-align: center;">
+                    Jangan lupa follow sosmed kita biar gak ketinggalan info PLC 2K27!
+                </p>
+                <ul class="contact-list">
+                    <li>
+                        <i class="fab fa-instagram"></i> 
+                        <a href="https://instagram.com/official_posh" target="_blank" rel="noopener noreferrer" style="color: #eee; text-decoration: none;">
+                            @official_posh
+                        </a>
+                    </li>
+                    <li>
+                        <i class="fab fa-tiktok"></i> 
+                        <a href="https://www.tiktok.com/@smaburbandarlampung" target="_blank" rel="noopener noreferrer" style="color: #eee; text-decoration: none;">
+                            @smaburbandarlampung
+                        </a>
+                    </li>
+                    <li>
+                        <i class="fab fa-youtube"></i> 
+                        <a href="https://youtu.be/8Kw8W2_kYUg" target="_blank" rel="noopener noreferrer" style="color: #eee; text-decoration: none;">
+                            YouTube Channel
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== FOOTER ===== -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">🍄 AMICCO</div>
+                <p>© 2026 - <span class="pixel-text">Til We Meet Again</span></p>
+                <div class="footer-socials">
+                    <a href="https://instagram.com/official_posh" target="_blank" rel="noopener noreferrer"><i class="fab fa-instagram"></i></a>
+                    <a href="https://www.tiktok.com/@smaburbandarlampung" target="_blank" rel="noopener noreferrer"><i class="fab fa-tiktok"></i></a>
+                    <a href="https://youtu.be/8Kw8W2_kYUg" target="_blank" rel="noopener noreferrer"><i class="fab fa-youtube"></i></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ===== SCRIPT ===== -->
+    <script src="script.js"></script>
+</body>
+</html>
